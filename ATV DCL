@@ -1,0 +1,23 @@
+create database empresa_db;
+
+create user 'admin'@'localhost' identified by '123456';
+create user 'gerente'@'localhost' identified by '123456';
+create user 'funcionario'@'localhost' identified by '123456';
+
+GRANT SELECT ON empresa_db.* TO 'funcionario'@'localhost';
+GRANT SELECT ON empresa_db.* TO 'gerente'@'localhost';
+GRANT INSERT ON empresa_db.* TO 'gerente'@'localhost';
+GRANT UPDATE ON empresa_db.* TO 'gerente'@'localhost';
+GRANT ALL PRIVILEGES ON empresa_db.* TO 'admin'@'localhost';
+
+REVOKE INSERT ON empresa_db.* FROM 'gerente'@'localhost';
+
+RENAME USER 'funcionario'@'localhost' TO 'assistente'@'localhost';
+
+ALTER USER 'gerente'@'localhost' IDENTIFIED BY '0001';
+
+SHOW GRANTS FOR 'assistente'@'localhost';
+SHOW GRANTS FOR 'gerente'@'localhost';
+SHOW GRANTS FOR 'admin'@'localhost';
+
+DROP USER 'assistente'@'localhost';
