@@ -1,0 +1,23 @@
+create database EMPRESA;
+use EMPRESA;
+
+create table DEPARTAMENTO(
+	cod_dep integer PRIMARY KEY,
+    nome_dep varchar(30)
+);
+
+create table FUNCIONARIO(
+	cod_func integer primary key,
+	cod_dep integer,
+	nome_func varchar(100),
+	nasc_func date,
+	salario_func numeric(10,2),
+	FOREIGN KEY(cod_dep) references DEPARTAMENTO(cod_dep)
+);
+
+create table DEPENDENTES(
+	cod_dep integer primary key,
+	cod_func integer,
+	dependente varchar(100),
+	FOREIGN KEY(cod_func) references FUNCIONARIO(cod_func)
+);
